@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест: Ваш уровень английского</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-transform: none;
+        }
+
+        body {
+            font-family: 'Times', serif;
+            background: url('back.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0d3b8;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding: 20px;
+            font-size: 1.6rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(20, 12, 28, 0.85);
+            padding: 50px;
+            border-radius: 15px;
+            border: 2px solid #5d4e2e;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            color: #d4af37;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .part {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(30, 22, 38, 0.8);
+            border-radius: 10px;
+            border: 1px solid #5d4e2e;
+        }
+
+        .part-title {
+            color: #d4af37;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #5d4e2e;
+            padding-bottom: 10px;
+        }
+
+        .instruction {
+            background: rgba(40, 30, 50, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #d4af37;
+            font-size: 1.4rem;
+        }
+
+        .audio-notice {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid #d4af37;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.3rem;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(40, 30, 50, 0.6);
+            border-radius: 8px;
+        }
+
+        .question-text {
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: rgba(50, 40, 60, 0.5);
+            border-radius: 6px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1.3rem;
+        }
+
+        .option:hover {
+            border-color: #d4af37;
+            background: rgba(60, 50, 70, 0.6);
+        }
+
+        .option.selected {
+            border-color: #ffd700;
+            background: rgba(70, 60, 80, 0.7);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .option-letter {
+            color: #d4af37;
+            font-weight: bold;
+            min-width: 30px;
+            font-size: 1.4rem;
+        }
+
+        .reading-text {
+            background: rgba(40, 30, 50, 0.7);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            border: 1px solid #5d4e2e;
+            font-size: 1.3rem;
+        }
+
+        .true-false-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .true-false-option {
+            padding: 12px 20px;
+            background: rgba(50, 40, 60, 0.5);
+            border-radius: 6px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 100px;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .true-false-option.selected {
+            border-color: #ffd700;
+            background: rgba(70, 60, 80, 0.7);
+        }
+
+        .word-input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(40, 30, 50, 0.8);
+            border: 1px solid #5d4e2e;
+            border-radius: 6px;
+            color: #e0d3b8;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            margin-top: 8px;
+        }
+
+        .test-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .test-button {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.6rem;
+            color: #e0d3b8;
+            background: linear-gradient(145deg, #3a2c1e, #5d4e2e);
+            border: 2px solid #d4af37;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .test-button:hover {
+            transform: translateY(-3px);
+            color: #ffd700;
+            border-color: #ffd700;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(30, 22, 38, 0.9);
+            border-radius: 10px;
+            border: 2px solid #d4af37;
+        }
+
+        .result-title {
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #d4af37;
+        }
+
+        .level-description {
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.3rem;
+        }
+
+        .level-tips {
+            background: rgba(40, 30, 50, 0.7);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .level-tips h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .level-tips ul {
+            padding-left: 25px;
+        }
+
+        .level-tips li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            font-size: 1.3rem;
+        }
+
+        .result-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(145deg, #25D366, #128C7E);
+            border: 2px solid #25D366;
+        }
+
+        .home-btn {
+            background: linear-gradient(145deg, #3a2c1e, #5d4e2e);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 1.3rem;
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .instruction {
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+            
+            .test-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .result-buttons {
+                flex-direction: column;
+            }
+            
+            .option {
+                padding: 12px;
+                font-size: 1.1rem;
+            }
+            
+            .test-button {
+                font-size: 1.3rem;
+                padding: 12px 25px;
+            }
+            
+            .part {
+                padding: 20px;
+            }
+            
+            .true-false-options {
+                flex-direction: column;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .reading-text {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .instruction {
+                font-size: 1rem;
+            }
+            
+            .option {
+                padding: 10px;
+                font-size: 1rem;
+            }
+            
+            .test-button {
+                font-size: 1.1rem;
+            }
+            
+            .part-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Определение вашего уровня английского</h1>
+
+        <!-- Часть 1: Аудирование -->
+        <div class="part" id="part1">
+            <h2 class="part-title">Часть 1: Аудирование (Listening)</h2>
+            <div class="instruction">
+                <p><strong>Инструкция:</strong> Вам будет прочитан текст на английском языке два раза. После прослушивания ответьте на вопросы 1-5, выбрав правильный вариант ответа a, b или c.</p>
+                <div class="audio-notice">
+    <audio controls style="width: 100%; margin: 10px 0;">
+        <source src="listening.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+</div>
+
+            <div class="question">
+                <div class="question-text">1. Who is Ben going to the museum with?</div>
+                <div class="options">
+                    <div class="option" data-question="1" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>His girlfriend</span>
+                    </div>
+                    <div class="option" data-question="1" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>His sister</span>
+                    </div>
+                    <div class="option" data-question="1" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>Alone</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">2. What will they do on Saturday afternoon if the weather is good?</div>
+                <div class="options">
+                    <div class="option" data-question="2" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>Go to a restaurant</span>
+                    </div>
+                    <div class="option" data-question="2" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>Go to the park</span>
+                    </div>
+                    <div class="option" data-question="2" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>Watch football</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">3. Why is Ben going to the restaurant on Saturday evening?</div>
+                <div class="options">
+                    <div class="option" data-question="3" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>It's his sister's birthday</span>
+                    </div>
+                    <div class="option" data-question="3" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>It's his girlfriend's birthday</span>
+                    </div>
+                    <div class="option" data-question="3" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>He loves Italian food</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">4. What does Ben think about his homework?</div>
+                <div class="options">
+                    <div class="option" data-question="4" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>It's easy</span>
+                    </div>
+                    <div class="option" data-question="4" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>It's boring</span>
+                    </div>
+                    <div class="option" data-question="4" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>It's difficult</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">5. How does Ben plan to spend Sunday evening?</div>
+                <div class="options">
+                    <div class="option" data-question="5" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>Go to the gym</span>
+                    </div>
+                    <div class="option" data-question="5" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>Watch football</span>
+                    </div>
+                    <div class="option" data-question="5" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>Relax and read a book</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Часть 2: Чтение -->
+        <div class="part" id="part2">
+            <h2 class="part-title">Часть 2: Чтение (Reading)</h2>
+            <div class="instruction">
+                <p><strong>Инструкция:</strong> Прочитайте текст и ответьте на вопросы 6-15.</p>
+            </div>
+
+            <div class="reading-text">
+                <h3>The History of Coffee</h3>
+                <p>Coffee is one of the most popular drinks in the world, but its history is often overlooked. The story of coffee begins in Ethiopia, where legend says a goat herder named Kaldi discovered it. He noticed that his goats became very energetic after eating berries from a certain tree. Curious, he tried the berries himself and experienced the same effect.</p>
+                <p>From Ethiopia, coffee traveled to the Arabian Peninsula, specifically to Yemen. By the 15th century, it was being grown there and traded. The first coffeehouses, called "qahveh khaneh," appeared in the Middle East. They quickly became important social centers where people gathered to talk, listen to music, play chess, and discuss current events.</p>
+                <p>Coffee arrived in Europe in the 17th century. At first, it was met with suspicion and was even called "the bitter invention of Satan." However, after Pope Clement VIII tasted it and approved, its popularity soared. European coffeehouses became hubs for intellectuals and businessmen. In London, they were known as "penny universities" because for the price of a coffee, one could engage in stimulating conversation.</p>
+                <p>Today, coffee is a global industry worth billions of dollars. From its humble beginnings in Ethiopia, it has become an integral part of cultures and daily routines worldwide.</p>
+            </div>
+
+            <!-- Вопросы 6-10 -->
+            <div class="question">
+                <div class="question-text">6. Where was coffee first discovered according to the legend?</div>
+                <div class="options">
+                    <div class="option" data-question="6" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>Yemen</span>
+                    </div>
+                    <div class="option" data-question="6" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>Ethiopia</span>
+                    </div>
+                    <div class="option" data-question="6" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>The Arabian Peninsula</span>
+                    </div>
+                    <div class="option" data-question="6" data-answer="d">
+                        <span class="option-letter">d)</span>
+                        <span>Europe</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">7. What did Kaldi notice about his goats?</div>
+                <div class="options">
+                    <div class="option" data-question="7" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>They refused to eat the berries.</span>
+                    </div>
+                    <div class="option" data-question="7" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>They became very energetic.</span>
+                    </div>
+                    <div class="option" data-question="7" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>They started producing milk.</span>
+                    </div>
+                    <div class="option" data-question="7" data-answer="d">
+                        <span class="option-letter">d)</span>
+                        <span>They fell asleep.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">8. When did coffee arrive in Europe?</div>
+                <div class="options">
+                    <div class="option" data-question="8" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>In the 15th century</span>
+                    </div>
+                    <div class="option" data-question="8" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>In the 17th century</span>
+                    </div>
+                    <div class="option" data-question="8" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>In the 18th century</span>
+                    </div>
+                    <div class="option" data-question="8" data-answer="d">
+                        <span class="option-letter">d)</span>
+                        <span>In the 19th century</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">9. Why were London coffeehouses called "penny universities"?</div>
+                <div class="options">
+                    <div class="option" data-question="9" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>Because university professors worked there.</span>
+                    </div>
+                    <div class="option" data-question="9" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>Because they were very expensive.</span>
+                    </div>
+                    <div class="option" data-question="9" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>Because one could learn a lot for the price of a coffee.</span>
+                    </div>
+                    <div class="option" data-question="9" data-answer="d">
+                        <span class="option-letter">d)</span>
+                        <span>Because they only served intellectuals.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">10. What is the main idea of the text?</div>
+                <div class="options">
+                    <div class="option" data-question="10" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>The health benefits of coffee.</span>
+                    </div>
+                    <div class="option" data-question="10" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>The different ways to prepare coffee.</span>
+                    </div>
+                    <div class="option" data-question="10" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>The spread and history of coffee.</span>
+                    </div>
+                    <div class="option" data-question="10" data-answer="d">
+                        <span class="option-letter">d)</span>
+                        <span>The coffee industry in the modern world.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вопросы 11-15 True/False/Not Stated -->
+            <div class="question">
+                <div class="question-text">11. Coffee was immediately popular in Europe.</div>
+                <div class="true-false-options">
+                    <div class="true-false-option" data-question="11" data-answer="True">True</div>
+                    <div class="true-false-option" data-question="11" data-answer="False">False</div>
+                    <div class="true-false-option" data-question="11" data-answer="Not Stated">Not Stated</div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">12. Coffeehouses in the Middle East were only for drinking coffee.</div>
+                <div class="true-false-options">
+                    <div class="true-false-option" data-question="12" data-answer="True">True</div>
+                    <div class="true-false-option" data-question="12" data-answer="False">False</div>
+                    <div class="true-false-option" data-question="12" data-answer="Not Stated">Not Stated</div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">13. Pope Clement VIII's approval helped coffee become popular in Europe.</div>
+                <div class="true-false-options">
+                    <div class="true-false-option" data-question="13" data-answer="True">True</div>
+                    <div class="true-false-option" data-question="13" data-answer="False">False</div>
+                    <div class="true-false-option" data-question="13" data-answer="Not Stated">Not Stated</div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">14. The first coffeehouses were in Ethiopia.</div>
+                <div class="true-false-options">
+                    <div class="true-false-option" data-question="14" data-answer="True">True</div>
+                    <div class="true-false-option" data-question="14" data-answer="False">False</div>
+                    <div class="true-false-option" data-question="14" data-answer="Not Stated">Not Stated</div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">15. The global coffee industry is very valuable today.</div>
+                <div class="true-false-options">
+                    <div class="true-false-option" data-question="15" data-answer="True">True</div>
+                    <div class="true-false-option" data-question="15" data-answer="False">False</div>
+                    <div class="true-false-option" data-question="15" data-answer="Not Stated">Not Stated</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Часть 3: Use of English -->
+        <div class="part" id="part3">
+            <h2 class="part-title">Часть 3: Use of English (Грамматика и лексика)</h2>
+            <div class="instruction">
+                <p><strong>Инструкция:</strong> Выберите правильный вариант для завершения предложений (16-25) и преобразуйте слова так, чтобы они грамматически и лексически соответствовали контексту (26-30).</p>
+            </div>
+
+            <!-- Вопросы 16-25 -->
+            <div class="question">
+                <div class="question-text">16. If I ______ more time, I would learn Japanese.</div>
+                <div class="options">
+                    <div class="option" data-question="16" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>have</span>
+                    </div>
+                    <div class="option" data-question="16" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>had</span>
+                    </div>
+                    <div class="option" data-question="16" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>will have</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">17. She is the woman ______ husband is a famous director.</div>
+                <div class="options">
+                    <div class="option" data-question="17" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>who</span>
+                    </div>
+                    <div class="option" data-question="17" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>which</span>
+                    </div>
+                    <div class="option" data-question="17" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>whose</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">18. By the time we arrived, the meeting ______.</div>
+                <div class="options">
+                    <div class="option" data-question="18" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>had already started</span>
+                    </div>
+                    <div class="option" data-question="18" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>has already started</span>
+                    </div>
+                    <div class="option" data-question="18" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>already started</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">19. You ______ finish the report today. The deadline is next week.</div>
+                <div class="options">
+                    <div class="option" data-question="19" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>mustn't</span>
+                    </div>
+                    <div class="option" data-question="19" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>don't have to</span>
+                    </div>
+                    <div class="option" data-question="19" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>shouldn't</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">20. This is ______ interesting book I've ever read.</div>
+                <div class="options">
+                    <div class="option" data-question="20" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>the most</span>
+                    </div>
+                    <div class="option" data-question="20" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>the more</span>
+                    </div>
+                    <div class="option" data-question="20" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>most</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">21. I look forward to ______ from you soon.</div>
+                <div class="options">
+                    <div class="option" data-question="21" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>hear</span>
+                    </div>
+                    <div class="option" data-question="21" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>hearing</span>
+                    </div>
+                    <div class="option" data-question="21" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>be heard</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">22. He made his children ______ their rooms before going out.</div>
+                <div class="options">
+                    <div class="option" data-question="22" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>to tidy</span>
+                    </div>
+                    <div class="option" data-question="22" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>tidy</span>
+                    </div>
+                    <div class="option" data-question="22" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>tidying</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">23. The city ______ by millions of tourists every year.</div>
+                <div class="options">
+                    <div class="option" data-question="23" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>is visited</span>
+                    </div>
+                    <div class="option" data-question="23" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>visits</span>
+                    </div>
+                    <div class="option" data-question="23" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>was visited</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">24. We need to come up with a ______ to this problem.</div>
+                <div class="options">
+                    <div class="option" data-question="24" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>solve</span>
+                    </div>
+                    <div class="option" data-question="24" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>solution</span>
+                    </div>
+                    <div class="option" data-question="24" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>solvable</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">25. I'm not used to ______ so early.</div>
+                <div class="options">
+                    <div class="option" data-question="25" data-answer="a">
+                        <span class="option-letter">a)</span>
+                        <span>get up</span>
+                    </div>
+                    <div class="option" data-question="25" data-answer="b">
+                        <span class="option-letter">b)</span>
+                        <span>getting up</span>
+                    </div>
+                    <div class="option" data-question="25" data-answer="c">
+                        <span class="option-letter">c)</span>
+                        <span>got up</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вопросы 26-30 с полями ввода -->
+            <div class="question">
+                <div class="question-text">26. The film was surprisingly ______. I thought it would be boring. <strong>ENTERTAIN</strong></div>
+                <input type="text" class="word-input" data-question="26" placeholder="Введите правильную форму слова">
+            </div>
+
+            <div class="question">
+                <div class="question-text">27. We need to make a ______ soon. <strong>DECIDE</strong></div>
+                <input type="text" class="word-input" data-question="27" placeholder="Введите правильную форму слова">
+            </div>
+
+            <div class="question">
+                <div class="question-text">28. He failed the exam due to his ______. <strong>CAREFUL</strong></div>
+                <input type="text" class="word-input" data-question="28" placeholder="Введите правильную форму слова">
+            </div>
+
+            <div class="question">
+                <div class="question-text">29. She speaks English ______. <strong>FLUENT</strong></div>
+                <input type="text" class="word-input" data-question="29" placeholder="Введите правильную форму слова">
+            </div>
+
+            <div class="question">
+                <div class="question-text">30. The ______ of the new software has increased our productivity. <strong>INTRODUCE</strong></div>
+                <input type="text" class="word-input" data-question="30" placeholder="Введите правильную форму слова">
+            </div>
+        </div>
+
+        <div class="test-buttons">
+            <button id="submitTest" class="test-button">Проверить результаты</button>
+            <a href="index.html" class="test-button home-btn">Вернуться на главную</a>
+        </div>
+
+        <!-- Блок результатов -->
+        <div id="testResult" class="result-container">
+            <h2 class="result-title">Ваш результат</h2>
+            <div class="score-display" id="scoreDisplay"></div>
+            <div id="resultContent">
+                <!-- Содержание результата будет добавляться через JavaScript -->
+            </div>
+            
+            <div class="result-buttons">
+                <button id="sendResult" class="test-button whatsapp-btn">Отправить результат в WhatsApp</button>
+                <a href="index.html" class="test-button home-btn">На главную</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Правильные ответы
+        const correctAnswers = {
+            // Listening (1-5)
+            '1': 'b', '2': 'b', '3': 'b', '4': 'c', '5': 'c',
+            // Reading multiple choice (6-10)
+            '6': 'b', '7': 'b', '8': 'b', '9': 'c', '10': 'c',
+            // Reading True/False (11-15)
+            '11': 'False', '12': 'False', '13': 'True', '14': 'False', '15': 'True',
+            // Use of English multiple choice (16-25)
+            '16': 'b', '17': 'c', '18': 'a', '19': 'b', '20': 'a',
+            '21': 'b', '22': 'b', '23': 'a', '24': 'b', '25': 'b',
+            // Use of English word formation (26-30)
+            '26': 'entertaining', '27': 'decision', '28': 'carelessness', 
+            '29': 'fluently', '30': 'introduction'
+        };
+
+        // Описания уровней
+        const levelDescriptions = {
+            'A1': {
+                title: 'Уровень A1 (Beginner/Elementary)',
+                description: 'Вы только начинаете свой путь в изучении английского. Вам нужно сосредоточиться на основах: базовой грамматике (present simple, to be), простой лексике и построении элементарных фраз.',
+                tips: [
+                    'Изучайте базовые времена (Present Simple, Present Continuous)',
+                    'Расширяйте словарный запас повседневной лексики',
+                    'Практикуйте простые диалоги и фразы',
+                    'Слушайте адаптированные аудиоматериалы',
+                    'Читайте простые тексты с базовой лексикой'
+                ]
+            },
+            'A2': {
+                title: 'Уровень A2 (Pre-Intermediate)',
+                description: 'У вас есть базовые знания, и вы можете общаться на простые, повседневные темы. Однако вам не хватает уверенности в использовании более сложной грамматики (условные предложения, времена Perfect) и словарного запаса для обсуждения абстрактных тем.',
+                tips: [
+                    'Осваивайте времена Perfect и пассивный залог',
+                    'Учите фразовые глаголы и идиомы',
+                    'Практикуйте разговорную речь в реальных ситуациях',
+                    'Читайте адаптированную литературу',
+                    'Смотрите фильмы с субтитрами'
+                ]
+            },
+            'B1': {
+                title: 'Уровень B1 (Intermediate)',
+                description: 'Это "пороговый" уровень. Вы можете успешно общаться в большинстве стандартных ситуаций, понимать основные идеи сложных текстов и выражать свое мнение. Вам стоит работать над беглостью речи, расширением словарного запаса и освоением нюансов грамматики.',
+                tips: [
+                    'Развивайте беглость речи через регулярную практику',
+                    'Расширяйте словарный запас для профессиональных тем',
+                    'Читайте неадаптированную литературу и статьи',
+                    'Слушайте подкасты и радио на английском',
+                    'Практикуйте письменную речь (эссе, emails)'
+                ]
+            },
+            'B2': {
+                title: 'Уровень B2 (Upper-Intermediate)',
+                description: 'Хороший, уверенный уровень. Вы понимаете сложные тексты, можете говорить спонтанно и довольно бегло с носителями языка без особых усилий для обеих сторон. Ваша речь детализирована, а грамматические ошибки редки. Следующая цель — достичь продвинутого уровня.',
+                tips: [
+                    'Совершенствуйте произношение и интонацию',
+                    'Изучайте сложные грамматические конструкции',
+                    'Читайте профессиональную литературу в оригинале',
+                    'Практикуйте деловую коммуникацию',
+                    'Готовьтесь к международным экзаменам (IELTS, TOEFL)'
+                ]
+            }
+        };
+
+        // Переменные
+        let userAnswers = {};
+
+        // Инициализация теста
+        function initTest() {
+            // Обработчики для вариантов ответов
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionId = this.dataset.question;
+                    const answer = this.dataset.answer;
+                    
+                    // Снимаем выделение с других вариантов в этом вопросе
+                    const otherOptions = this.parentElement.querySelectorAll('.option');
+                    otherOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Выделяем выбранный вариант
+                    this.classList.add('selected');
+                    
+                    // Сохраняем ответ
+                    userAnswers[questionId] = answer;
+                });
+            });
+
+            // Обработчики для True/False/Not Stated
+            document.querySelectorAll('.true-false-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionId = this.dataset.question;
+                    const answer = this.dataset.answer;
+                    
+                    // Снимаем выделение с других вариантов в этом вопросе
+                    const otherOptions = this.parentElement.querySelectorAll('.true-false-option');
+                    otherOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Выделяем выбранный вариант
+                    this.classList.add('selected');
+                    
+                    // Сохраняем ответ
+                    userAnswers[questionId] = answer;
+                });
+            });
+
+            // Обработчики для полей ввода
+            document.querySelectorAll('.word-input').forEach(input => {
+                input.addEventListener('input', function() {
+                    const questionId = this.dataset.question;
+                    userAnswers[questionId] = this.value.trim().toLowerCase();
+                });
+            });
+        }
+
+        // Подсчет результатов
+        function calculateResult() {
+            let score = 0;
+            const totalQuestions = 30;
+            
+            // Проверяем ответы на вопросы 1-25 (multiple choice и true/false)
+            for (let i = 1; i <= 25; i++) {
+                if (userAnswers[i.toString()] === correctAnswers[i.toString()]) {
+                    score++;
+                }
+            }
+            
+            // Проверяем ответы на вопросы 26-30 (word formation)
+            for (let i = 26; i <= 30; i++) {
+                const userAnswer = userAnswers[i.toString()];
+                const correctAnswer = correctAnswers[i.toString()];
+                
+                if (userAnswer && userAnswer === correctAnswer.toLowerCase()) {
+                    score++;
+                }
+            }
+            
+            return { score, totalQuestions };
+        }
+
+        // Определение уровня
+        function determineLevel(score) {
+            if (score >= 27) return 'B2';
+            if (score >= 20) return 'B1';
+            if (score >= 10) return 'A2';
+            return 'A1';
+        }
+
+        // Показ результатов
+        function showResult(score, totalQuestions, level) {
+            const levelInfo = levelDescriptions[level];
+            const resultContent = document.getElementById('resultContent');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            
+            scoreDisplay.textContent = `Ваш результат: ${score} из ${totalQuestions} баллов`;
+            
+            let tipsHTML = '';
+            levelInfo.tips.forEach(tip => {
+                tipsHTML += `<li>${tip}</li>`;
+            });
+            
+            resultContent.innerHTML = `
+                <div class="level-description">
+                    <h3>${levelInfo.title}</h3>
+                    <p>${levelInfo.description}</p>
+                </div>
+                <div class="level-tips">
+                    <h3>Рекомендации для дальнейшего развития:</h3>
+                    <ul>${tipsHTML}</ul>
+                </div>
+            `;
+            
+            document.getElementById('testResult').style.display = 'block';
+            document.getElementById('testResult').scrollIntoView({ behavior: 'smooth' });
+            
+            // Сохраняем результат для отправки
+            window.currentResult = {
+                score: score,
+                total: totalQuestions,
+                level: levelInfo.title,
+                description: levelInfo.description
+            };
+        }
+
+        // Отправка результата в WhatsApp
+        function sendToWhatsApp() {
+            const result = window.currentResult;
+            
+            const message = `Результат теста "Уровень английского":%0A%0A` +
+                           `📊 Набрано баллов: ${result.score}/${result.total}%0A` +
+                           `🎯 Уровень: ${result.level}%0A%0A` +
+                           `📝 Краткое описание:%0A` +
+                           `${result.description}%0A%0A` +
+                           `💡 Для записи на занятия укажите:%0A` +
+                           `- Ваше имя%0A` +
+                           `- Предпочтительное время занятий%0A` +
+                           `- Цели изучения английского`;
+            
+            window.open(`https://wa.me/79777201867?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Проверка заполнения всех вопросов
+        function checkAllQuestionsAnswered() {
+            for (let i = 1; i <= 30; i++) {
+                if (!userAnswers[i.toString()]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            initTest();
+            
+            document.getElementById('submitTest').addEventListener('click', function() {
+                // Проверяем, что на все вопросы ответили
+                if (!checkAllQuestionsAnswered()) {
+                    alert('Пожалуйста, ответьте на все вопросы перед завершением теста.');
+                    return;
+                }
+                
+                const { score, totalQuestions } = calculateResult();
+                const level = determineLevel(score);
+                showResult(score, totalQuestions, level);
+            });
+            
+            document.getElementById('sendResult').addEventListener('click', sendToWhatsApp);
+        });
+    </script>
+</body>
+</html>
