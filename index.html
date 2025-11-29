@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+<title>Вершинина Екатерина | Преподаватель английского языка</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портал в новую реальность | Учитель английского</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cinzel', serif;
+            background: url('back.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0d3b8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Шапка */
+        header {
+            width: 100%;
+height: 90vh;
+            display: flex;
+            justify-content: center top;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        .header-image {
+            width: 100%;
+            height: 90vh;
+          
+            object-fit: cover;
+        }
+
+        /* Навигация */
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 999;
+            background: rgba(20, 12, 28, 0.9);
+            padding: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            position: sticky;
+            top: 0;
+        }
+
+        .nav-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: nowrap;
+            justify-content: center;
+        }
+
+        .nav-item {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.5rem;
+            color: #d4af37;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+white-space: nowrap; /* запрет переноса текста */
+        }
+
+        .nav-item:hover {
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+            transform: translateY(-3px);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        /* Основной контент */
+        main {
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 100px;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .section-scroll {
+            display: block;
+            margin: 0 auto 60px;
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+        }
+
+        .section-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .section-content.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .section-image {
+            flex: 0 0 40%;
+            max-width: 40%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .section-text {
+            flex: 1%;
+            text-align: left;
+            font-size: 1.8rem;
+            max-width: none;
+            background: rgba(20, 12, 28, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #5d4e2e;
+            line-height: 1.4;
+        }
+
+        /* Кнопки в разделе "Ваш путь" */
+        .path-buttons {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .path-button {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.5rem;
+            color: #e0d3b8;
+            background: linear-gradient(145deg, #3a2c1e, #5d4e2e);
+            border: 2px solid #d4af37;
+            padding: 20px 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .path-button:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            color: #ffd700;
+            border-color: #ffd700;
+        }
+
+        .path-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .path-button:hover::before {
+            left: 100%;
+        }
+
+        /* Контакты */
+        .contacts-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .social-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #3a2c1e, #5d4e2e);
+            border: 3px solid #d4af37;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.15);
+            border-color: #ffd700;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+        }
+
+        .social-icon img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        /* Кнопки внизу страницы */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 80px 0;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .enroll-button {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.8rem;
+            color: #e0d3b8;
+            background: linear-gradient(145deg, #3a2c1e, #5d4e2e);
+            border: 3px solid #d4af37;
+            padding: 25px 50px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .enroll-button:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            color: #ffd700;
+            border-color: #ffd700;
+        }
+
+        .enroll-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .enroll-button:hover::before {
+            left: 100%;
+        }
+
+        .no-need-button {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.5rem;
+            color: #888;
+            background: #333;
+            border: 2px solid #555;
+            padding: 25px 35px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            position: relative;
+            user-select: none;
+        }
+
+        .no-need-message {
+            display: none;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 12, 28, 0.95);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 2px solid #5d4e2e;
+            font-size: 1.2rem;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #2a1c18, #3a2c1e);
+            border: 3px solid #d4af37;
+            border-radius: 15px;
+            padding: 40px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: #d4af37;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #ffd700;
+            transform: scale(1.2);
+        }
+
+        .modal h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #d4af37;
+            font-size: 2.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #e0d3b8;
+            font-size: 1.3rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            background: rgba(20, 12, 28, 0.8);
+            border: 2px solid #5d4e2e;
+            border-radius: 8px;
+            color: #e0d3b8;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(145deg, #3a2c1e, #5d4e2e);
+            border: 3px solid #d4af37;
+            border-radius: 8px;
+            color: #e0d3b8;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(145deg, #5d4e2e, #7a6b4a);
+            color: #ffd700;
+            border-color: #ffd700;
+            transform: translateY(-3px);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .section-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .section-content.reverse {
+                flex-direction: column;
+            }
+            
+            .section-image {
+                max-width: 80%;
+            }
+            
+            .section-text {
+                font-size: 2rem;
+                text-align: center;
+            }
+        }
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%; /* почти на весь экран */
+        max-width: 95%;
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .modal h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        font-size: 1rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 1rem;
+        padding: 10px;
+    }
+    
+    .submit-btn {
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+    
+    .close-modal {
+        top: 10px;
+        right: 10px;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 98%;
+        max-width: 98%;
+        padding: 15px;
+    }
+    
+    .modal h2 {
+        font-size: 1.3rem;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+}
+        @media (max-width: 768px) {
+            .header-image {
+content: url('header1.png');
+                height: 100vh;
+object-fit: cover;
+            }
+
+            .nav-container {
+                gap: 8px;
+            }
+nav {
+        position: relative; /* убираем фиксацию */
+        margin-top: -10px; /* поднимаем вплотную к шапке */
+        padding: 8px 0; /* уменьшаем высоту меню */
+            
+.nav-item {
+                font-size: 0.9rem;
+                padding: 5px 8px;
+            }
+
+            .section-text {
+                width: 100%;
+font-size: 1.3rem;
+                padding: 15px;
+            }
+.section-content {
+flex-direction: column;
+gap: 15px;
+}
+
+.section-image { 
+max-width: 100%;
+width: 100%;
+oder: -1;
+height: auto; 
+flex: none;
+}
+            .path-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .path-button {
+                font-size: 1.3rem;
+                padding: 15px 30px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .enroll-button {
+                font-size: 1.5rem;
+                padding: 20px 40px;
+            }
+
+            .social-icons {
+                gap: 30px;
+            }
+
+            .social-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            .social-icon img {
+                width: 45px;
+                height: 45px;
+            }
+main {
+        margin-top: 0;
+        padding-top: 10px;
+    }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                gap: 8px;
+flex-wrap: wrap;
+            }
+nav {
+        position: relative; /* убираем фиксацию */
+        margin-top: -10px; /* поднимаем вплотную к шапке */
+        padding: 8px 0; /* уменьшаем высоту меню */
+    }
+
+            .nav-item {
+                font-size: 0.9rem;
+padding: 5px 8px;
+            }
+
+            .section-text {
+                font-size: 1.3rem;
+                padding: 15px;
+            }
+
+            .path-button, .enroll-button {
+                font-size: 1.2rem;
+                padding: 12px 25px;
+            }
+
+            .modal-content {
+                padding: 25px;
+            }
+            
+            .social-icons {
+                flex-direction: column;
+                gap: 20px;
+            }
+body {
+        font-size: 1.2rem;
+    }
+main {
+        margin-top: 0;
+        padding-top: 10px;
+    }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <img src="header.png" alt="Портал в новую реальность" class="header-image">
+    </header>
+
+    <!-- Навигация -->
+    <nav>
+        <div class="nav-container">
+            <a href="#masters" class="nav-item">Мастер порталов</a>
+            <a href="#path" class="nav-item">Ваш путь в новом измерении</a>
+            <a href="#payment" class="nav-item">Оплата чеканной монетой</a>
+            <a href="#contacts" class="nav-item">Связь с хранителем знаний</a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main>
+        <!-- Раздел 1: Мастер порталов -->
+        <section id="masters">
+            <img src="scroll1.png" alt="Мастер порталов" class="section-scroll">
+            <div class="section-content">
+                <img src="1.png" alt="Мастер порталов" class="section-image">
+                <div class="section-text">
+                    <p>Меня зовут Вершинина Екатерина Ивановна, я преподаватель английского языка.
+                    Моя миссия — быть для вас проводником в захватывающее путешествие, где язык становится живым и понятным инструментом для общения, работы и открытий. Я - Мастер Порталов и создаю не просто уроки, а уникальные врата в мир английского языка, где исчезают барьеры и рождается уверенность.</p>
+<br>
+
+<p>Опираясь на многолетний опыт работы со студентами всех возрастов — от дошкольников до взрослых — я создаю персонализированное образовательное пространство для каждого ученика.
+
+Я глубоко убеждена, что красота и визуальная гармония — это не просто украшение урока, а мощный катализатор мотивации и глубокого погружения в языковую среду.
+
+Мои уроки — это тщательно продуманный визуальный ряд, интерактивные материалы и игровые механики, которые превращают процесс обучения в увлекательное исследование.
+
+Я создаю атмосферу психологического комфорта, где не страшно ошибаться, задавать вопросы и раскрывать свой потенциал, потому что именно в такой среде рождается подлинный интерес.
+
+От первого слова до свободной беседы — пройдем этот путь вместе!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел 2: Ваш путь в новом измерении -->
+        <section id="path">
+            <img src="scroll2.png" alt="Ваш путь в новом измерении" class="section-scroll">
+            <div class="section-content reverse">
+                <div class="section-text">
+                    <p>Ваши цели и ритм жизни уникальны — и ваш подход к изучению языка должен быть таким же. Здесь не существует шаблонов, только персонализированный маршрут, который я помогу составить, отталкиваясь от ваших интересов и возможностей.
+
+Вам близок строгий и структурированный формат «а-ля СССР» с четкими правилами и системой? Или вы предпочитаете расслабленное общение на основе любимых сериалов, книг и мультфильмов? Мой подход трансформируется под вас.</p>
+
+<br>
+<p>Ваш темп — ваш закон. Будь то интенсивный курс, чтобы нагнать школьную программу за лето, или неспешное, но уверенное движение к цели без стресса и давления.
+
+Я не просто преподаю язык, я проектирую образовательное пространство, где вам психологически комфортно, а каждый урок приносит и пользу, и удовольствие.
+
+Особое внимание наглядному отслеживанию прогресса. Вы всегда будете видеть, какой путь уже прошли и какие вершины покоряются вам на горизонте.
+
+Кроме того, вы всегда можете задать интересующие Вас вопросы в личном чате.
+Ваш успех — это наша совместная стратегия. Мы вместе определяем цели, выбираем комфортный ритм и инструменты, чтобы каждый шаг был осознанным и эффективным.
+
+Ваш портал в мир английского ждет своего путешественника.</p>
+                    <div class="path-buttons">
+                        <a href="test1.html" class="path-button">Карта познания: определи свой стиль</a>
+                        <a href="test2.html" class="path-button">Измерение мастерства: узнай свой уровень</a>
+                    </div>
+                </div>
+                <img src="2.png" alt="Ваш путь в новом измерении" class="section-image">
+            </div>
+        </section>
+
+        <!-- Раздел 3: Оплата чеканной монетой -->
+        <section id="payment">
+            <img src="scroll3.png" alt="Оплата чеканной монетой" class="section-scroll">
+            <div class="section-content">
+                <img src="3.png" alt="Оплата чеканной монетой" class="section-image">
+                <div class="section-text">
+                    <p>Услуги по открытию порталов в новую реальность, прокладыванию тропинок в языковых джунглях и передаче древних и не очень знаний можно оплатить чеканной монетой на волшебную пластиковую карту Мастера. Оплата производится в конце месяца по факту проведенных занятий.</p>
+                    <br>
+                    <br>
+                    <p>Индивидуально онлайн: 1500р/60 мин</p>
+                    <p>Мини-группа онлайн: 1000р/60 мин</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел 4: Контакты -->
+        <section id="contacts">
+            <img src="scroll4.png" alt="Связь с хранителями знаний" class="section-scroll">
+            <div class="section-content reverse">
+                <div class="section-text">
+                    <p>Для связи с хранителем знаний используйте кристаллы связи магические либо месенджеры людские.</p>
+                    <div class="contacts-container">
+                        <p>Напишите мне в одном из мессенджеров:</p>
+                        <div class="social-icons">
+                            <a href="https://wa.me/+79777201867" class="social-icon" target="_blank">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                            </a>
+                            <a href="https://t.me/+79777201867" class="social-icon" target="_blank">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <img src="4.png" alt="Связь с хранителями знаний" class="section-image">
+            </div>
+        </section>
+
+        <!-- Кнопки действия -->
+        <div class="action-buttons">
+            <button id="enrollBtn" class="enroll-button">Записаться на занятия</button>
+            <button id="noNeedBtn" class="no-need-button">Английский мне не нужен
+                <div class="no-need-message">Такой кнопки нет, вам показалось</div>
+            </button>
+        </div>
+    </main>
+
+    <!-- Модальное окно записи -->
+    <div id="enrollModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Запись в ученики</h2>
+            <form id="enrollForm">
+                <div class="form-group">
+                    <label for="name">Ваше имя и фамилия:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Возраст или класс:</label>
+                    <input type="text" id="age" name="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Желаемое время занятий:</label>
+                    <input type="text" id="time" name="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Цель обучения, интересы, пожелания (по желанию):</label>
+                    <textarea id="comment" name="comment"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Открытие модального окна
+        document.getElementById('enrollBtn').addEventListener('click', function() {
+            document.getElementById('enrollModal').style.display = 'flex';
+        });
+
+        // Закрытие модального окна
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('enrollModal').style.display = 'none';
+        });
+
+        // Закрытие модального окна при клике вне его
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('enrollModal')) {
+                document.getElementById('enrollModal').style.display = 'none';
+            }
+        });
+
+        // Обработка формы
+document.getElementById('enrollForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Собираем данные формы
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const time = document.getElementById('time').value;
+    const comment = document.getElementById('comment').value;
+    
+    // Формируем сообщение
+    const message = `Новая заявка на обучение:%0A%0A` +
+                   `👤 Имя: ${name}%0A` +
+                   `🎂 Возраст/класс: ${age}%0A` +
+                   `⏰ Желаемое время: ${time}%0A` +
+                   `💬 Комментарий: ${comment || 'не указано'}%0A%0A` +
+                   `📞 Для связи: [пользователь укажет]`;
+    
+    // Открываем WhatsApp с сообщением
+    window.open(`https://t.me/+79777201867?text=${message}`, '_blank');
+    
+    // Закрываем модальное окно
+    document.getElementById('enrollModal').style.display = 'none';
+    
+    // Очищаем форму
+    this.reset();
+});
+
+        // Кнопка "Английский мне не нужен" для ПК
+        const noNeedBtn = document.getElementById('noNeedBtn');
+        const noNeedMessage = document.querySelector('.no-need-message');
+        
+        noNeedBtn.addEventListener('mouseover', function() {
+    if (window.innerWidth > 768) {
+        const buttonRect = this.getBoundingClientRect();
+        const maxX = window.innerWidth - buttonRect.width;
+        const maxY = window.innerHeight - buttonRect.height;
+        
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+        
+        this.style.position = 'fixed';
+        this.style.left = `${randomX}px`;
+        this.style.top = `${randomY}px`;
+    }
+});
+
+        // Кнопка "Английский мне не нужен" для мобильных
+        noNeedBtn.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                noNeedMessage.style.display = 'block';
+                setTimeout(() => {
+                    noNeedMessage.style.display = 'none';
+this.style.display = 'none';
+                }, 2000);
+            }
+        });
+
+        // Плавная прокрутка к разделам
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+// Добавь в конец скрипта
+function fixMobileImages() {
+    if (window.innerWidth <= 768) {
+        document.querySelectorAll('.section-image').forEach(img => {
+            img.style.width = '100%';
+            img.style.maxWidth = '100%';
+            img.style.height = 'auto';
+        });
+    }
+}
+
+window.addEventListener('load', fixMobileImages);
+window.addEventListener('resize', fixMobileImages);
+    </script>
+</body>
+</html>
